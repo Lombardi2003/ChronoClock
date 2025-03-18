@@ -1,8 +1,13 @@
+import json
 from telegram import ReplyKeyboardMarkup, Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, CallbackContext
 
+# Carica il file JSON
+with open('config.json', 'r') as file:
+    config = json.load(file)
+
 # Token del bot -> metodo per interagire con l'API di Telegram
-TOKEN = ""
+TOKEN = config['TOKEN']
 
 # Tastiera personalizzata per il menu
 keyboard = [
@@ -17,10 +22,16 @@ reply_markup = ReplyKeyboardMarkup(
 
 async def start(update: Update, context: CallbackContext) -> None:
     """Mostra la tastiera personalizzata e un messaggio di benvenuto"""
-    await update.message.reply_text("Scegli un'opzione:\n"
-                                    "🔔 Imposta Promemoria\n"
-                                    "📋 Visualizza Promemoria\n"
-                                    "❌ Cancella Promemoria", reply_markup=reply_markup)
+    await update.message.reply_text(
+        "Ciao! 👋 Sono il tuo assistente per gestire promemoria e notifiche.\n\n"
+        "Con me, puoi facilmente:\n"
+        "🔔 Impostare un promemoria\n"
+        "📋 Visualizzare i promemoria attivi\n"
+        "❌ Cancellare un promemoria\n\n"
+        "Scegli un'opzione per iniziare:",
+        reply_markup=reply_markup
+    )
+
 
 async def handle_message(update: Update, context: CallbackContext) -> None:
     """Gestisce i messaggi inviati dall'utente"""
