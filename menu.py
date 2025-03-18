@@ -2,7 +2,7 @@ import json
 from telegram import ReplyKeyboardMarkup, Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, CallbackContext
 
-# Carica il file JSON
+# Carica del file JSON con le configurazioni del bot
 with open('config.json', 'r') as file:
     config = json.load(file)
 
