@@ -34,7 +34,7 @@ async def start(update: Update, context: CallbackContext) -> None:
 
 
 async def handle_message(update: Update, context: CallbackContext) -> None:
-    """Gestisce i messaggi inviati dall'utente"""
+    """Gestisce i messaggi inviati dall'utente e risponde con un messaggio di errore"""
     text = update.message.text
 
     if text == "🔔 Imposta Promemoria":
