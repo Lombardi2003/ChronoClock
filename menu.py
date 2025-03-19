@@ -38,6 +38,14 @@ async def newremind(update: Update, context: CallbackContext) -> None:
     """Imposta un promemoria"""
     await update.message.reply_text("Funzione Imposta Promemoria 📅 (da implementare)")
 
+async def viewremind(update: Update, context: CallbackContext) -> None:
+    """Visualizza i promemoria attivi"""
+    await update.message.reply_text("Ecco i tuoi promemoria 📋 (da implementare)")
+
+async def delremind(update: Update, context: CallbackContext) -> None:
+    """Cancella un promemoria"""
+    await update.message.reply_text("Funzione Cancella Promemoria 📅 (da implementare)")
+
 # Funzione per gestire i messaggi inviati dall'utente: update -> informazioni sul messaggio inviato dall'utente, context -> informazioni aggiuntive per gestire il messaggio
 async def handle_message(update: Update, context: CallbackContext) -> None:
     """Gestisce i messaggi inviati dall'utente e risponde con un messaggio di errore"""
@@ -46,9 +54,9 @@ async def handle_message(update: Update, context: CallbackContext) -> None:
     if text == "🔔 Imposta Promemoria":
         await newremind(update, context)
     elif text == "📋 Visualizza Promemoria":
-        await update.message.reply_text("Ecco i tuoi promemoria 📋 (da implementare)")
+        await viewremind(update, context)
     elif text == "❌ Cancela Promemoria":
-        await update.message.reply_text("Funzione Cancella Promemoria 📅 (da implementare)")
+        await delremind(update, context)
     else:
         await update.message.reply_text("Non ho capito. Usa i pulsanti per interagire meglio! 😊")
 
@@ -59,6 +67,10 @@ def main():
     app.add_handler(CommandHandler("start", start))
     # Comando /newremind per mostrare il menu
     app.add_handler(CommandHandler("newremind", newremind))
+    # Comando /viewremind per mostrare il menu
+    app.add_handler(CommandHandler("viewremind", viewremind))
+    # Comando /delremind per mostrare il menu
+    app.add_handler(CommandHandler("delremind", delremind))
     # Gestore per rispondere ai messaggi inviati dagli utenti
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
 
