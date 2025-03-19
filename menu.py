@@ -20,8 +20,10 @@ reply_markup = ReplyKeyboardMarkup(
     resize_keyboard=True  # Ridimensiona la tastiera per adattarla alla schermata dell'utente
 )
 
+# Funzione per gestire il comando /start
 async def start(update: Update, context: CallbackContext) -> None:
     """Mostra la tastiera personalizzata e un messaggio di benvenuto"""
+
     await update.message.reply_text(
         "Ciao! 👋 Sono il tuo assistente per gestire promemoria e notifiche.\n\n"
         "Con me, puoi facilmente:\n"
@@ -29,35 +31,42 @@ async def start(update: Update, context: CallbackContext) -> None:
         "📋 Visualizzare i promemoria attivi\n"
         "❌ Cancellare un promemoria\n\n"
         "Scegli un'opzione per iniziare:",
-        reply_markup=reply_markup
+        reply_markup=reply_markup # Mostra la tastiera personalizzata
     )
 
+async def newremind(update: Update, context: CallbackContext) -> None:
+    """Imposta un promemoria"""
+    await update.message.reply_text("Funzione Imposta Promemoria 📅 (da implementare)")
 
+# Funzione per gestire i messaggi inviati dall'utente: update -> informazioni sul messaggio inviato dall'utente, context -> informazioni aggiuntive per gestire il messaggio
 async def handle_message(update: Update, context: CallbackContext) -> None:
     """Gestisce i messaggi inviati dall'utente e risponde con un messaggio di errore"""
-    text = update.message.text
-
+    text = update.message.text # Estrae il testo del messaggio inviato dall'utente
+    # Gestione delle azioni in base al testo del messaggio
     if text == "🔔 Imposta Promemoria":
-        await update.message.reply_text("Funzione Imposta Promemoria 📅 (da implementare)")
+        await newremind(update, context)
     elif text == "📋 Visualizza Promemoria":
         await update.message.reply_text("Ecco i tuoi promemoria 📋 (da implementare)")
     elif text == "❌ Cancela Promemoria":
         await update.message.reply_text("Funzione Cancella Promemoria 📅 (da implementare)")
     else:
-        await update.message.reply_text("Non ho capito. Usa i pulsanti per interagire! 😊")
+        await update.message.reply_text("Non ho capito. Usa i pulsanti per interagire meglio! 😊")
 
 def main():
     # Creazione dell'istanza principale del bot Telegram
     app = Application.builder().token(TOKEN).build() # Inizializza e configura il bot Telegram, impostando il token di autenticazione e creando l'istanza pronta all'uso. 
-    
     # Comando /start per mostrare il menu
     app.add_handler(CommandHandler("start", start))
-    
+    # Comando /newremind per mostrare il menu
+    app.add_handler(CommandHandler("newremind", newremind))
     # Gestore per rispondere ai messaggi inviati dagli utenti
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
 
     print("Bot avviato...")
+
+    # Avvia il bot in modalità polling per ricevere continuamente i comandi -> il bot invia continuamente richieste ai server Telegram per controllare se ci sono nuovi messaggi da gestire
     app.run_polling()
 
+# Avvio del programma
 if __name__ == "__main__":
     main()
