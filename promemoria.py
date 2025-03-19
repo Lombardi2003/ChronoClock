@@ -1,2 +1,4 @@
 class Promemoria():
-    pass
+    
+    def __init__(self, update, context):
+        pass
