@@ -61,7 +61,7 @@ async def handle_message(update: Update, context: CallbackContext) -> None:
     elif text == "❌ Cancela Promemoria":
         await delremind(update, context)
     else:
-        await update.message.reply_text("Non ho capito. Usa i pulsanti per interagire meglio! 😊")
+        await update.message.reply_text("Non ho capito. Usa i pulsanti per interagire meglio! 😊") # Messaggio per la gestione di input non riconosciuti
 
 def main():
     # Creazione dell'istanza principale del bot Telegram
