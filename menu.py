@@ -34,14 +34,17 @@ async def start(update: Update, context: CallbackContext) -> None:
         reply_markup=reply_markup # Mostra la tastiera personalizzata
     )
 
+# Funzione per gestire l'inserimento di un nuovo promemoria
 async def newremind(update: Update, context: CallbackContext) -> None:
     """Imposta un promemoria"""
     await update.message.reply_text("Funzione Imposta Promemoria 📅 (da implementare)")
 
+# Funzione per visualizzare i promemoria attivi
 async def viewremind(update: Update, context: CallbackContext) -> None:
     """Visualizza i promemoria attivi"""
     await update.message.reply_text("Ecco i tuoi promemoria 📋 (da implementare)")
 
+# Funzione per cancellare un promemoria esistente
 async def delremind(update: Update, context: CallbackContext) -> None:
     """Cancella un promemoria"""
     await update.message.reply_text("Funzione Cancella Promemoria 📅 (da implementare)")
