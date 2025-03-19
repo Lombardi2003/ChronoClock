@@ -9,7 +9,7 @@ with open('config.json', 'r') as file:
 # Token del bot -> metodo per interagire con l'API di Telegram
 TOKEN = config['TOKEN']
 
-# Tastiera personalizzata per il menu
+# Tastiera personalizzata per il menu principale
 keyboard = [
     ["🔔 Imposta Promemoria", "📋 Visualizza Promemoria", "❌ Cancella Promemoria"]
 ]
